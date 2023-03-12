@@ -1,4 +1,5 @@
 /*el error esta aqui */
+/*Esta es el Nabvar de la pagina  */
 import { Link } from 'react-router-dom';
 
 function Navbar() {
