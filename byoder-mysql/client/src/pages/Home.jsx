@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
-import { getPersonasRequest } from "../api/persons.api";
 import InfoPerson from "../components/InfoPerson";
+import { usePersons } from "../Context/PersonProvider";
 
-function Home(){
-    const [personas, setPersons] = useState([]);
+
+function Home() {
+    const {personas, loadPersons} = usePersons();
     useEffect(() => {
-        async function loadPersons() {
-        const response = await getPersonasRequest();
-        setPersons(response.data);
-        }
         loadPersons();
     }, []);
+    function renderMain() {
+        if (personas.length ===0) return <h1> No hay informacion de personas</h1>
+        return personas.map((person) => <InfoPerson person={person} key={person.id} />)
+    }
 
     return (
-        <div>
-            <h1>INFORMACION: </h1>
-            {personas.map((person) => (
-            <InfoPerson person={person} key={person.id} />
-            ))}
+        <div  className="">
+            <h1 className=" font-bold text-center p-5">REGISTRO DE INFORMACION PERSONAL DE USUARIOS:</h1>
+            <div className="grid grid-cols-4 gap-3  ">{renderMain()}</div>
         </div>
     );
 }
