@@ -10,7 +10,7 @@ function Home() {
     }, []);
     function renderMain() {
         if (personas.length ===0) return <h1> No hay informacion de personas</h1>
-        return personas.map((person) => <InfoPerson person={person} key={person.id} />)
+        return personas.map((humano) => <InfoPerson humano={humano} key={humano.id} />)
     }
 
     return (
